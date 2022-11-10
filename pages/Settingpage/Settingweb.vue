@@ -101,7 +101,7 @@ export default {
             }
         },
         DateMovie(val) {
-            if (val.trim() != "") {
+            if (val != "") {
                 this.DateMoviestatus = true;
             }
         },
@@ -138,13 +138,13 @@ export default {
         },
         save() {
             if (
-                this.title.trim() == "" || 
-                this.Description.trim() == "" || 
-                this.Slogan.trim() == "" || 
-                this.DateMovie.trim() == "" || 
-                this.image == "" || 
-                (typeof this.image.name == 'string' && this.image.type != "image/png") || 
-                this.image_list == "" || 
+                this.title.trim() == "" ||
+                this.Description.trim() == "" ||
+                this.Slogan.trim() == "" ||
+                this.DateMovie == "" ||
+                this.image == "" ||
+                (typeof this.image.name == 'string' && this.image.type != "image/png") ||
+                this.image_list == "" ||
                 (typeof this.image_list.name == 'string' && this.image_list.type != "image/x-icon")
             ) {
                 this.error();
@@ -193,7 +193,7 @@ export default {
             } else {
                 this.Sloganstatus = true;
             }
-            if (this.DateMovie.trim() == "") {
+            if (this.DateMovie == "") {
                 this.DateMoviestatus = false;
             } else {
                 this.DateMoviestatus = true;
@@ -226,7 +226,7 @@ export default {
             } else {
                 this.image_liststatus = true;
             }
-            if (this.title.trim() == "" || this.Description.trim() == "" || this.Slogan.trim() == "" || this.DateMovie.trim() == "" || this.image == "" || this.image_list == "") {
+            if (this.title.trim() == "" || this.Description.trim() == "" || this.Slogan.trim() == "" || this.DateMovie == "" || this.image == "" || this.image_list == "") {
                 this.$swal({
                     icon: "warning",
                     title: "Please complete the information.",
@@ -240,7 +240,7 @@ export default {
             formData.append("title_header", this.title.trim());
             formData.append("description_footer", this.Description.trim());
             formData.append("slogan", this.Slogan.trim());
-            formData.append("condition_movienew", this.DateMovie.trim());
+            formData.append("condition_movienew", this.DateMovie);
 
             formData.append("logo", this.image == this.image_default ? null : this.image);
             formData.append("icon", this.image_list == this.image_list_default ? null : this.image_list);
