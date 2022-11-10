@@ -98,14 +98,15 @@ export default {
             this.video = "";
             this.adsname = "";
             this.adsurl = "";
-            this.adsPosition = "";
+            // this.adsPosition = "";
             this.adsskip = "";
         },
         save() {
-            if (this.video == null || 
-                this.adsname.trim() == null || 
-                this.adsurl.trim() == null || 
-                this.adsPosition.trim() == null) {
+            if (this.video == null ||
+                this.adsname.trim() == null ||
+                this.adsurl.trim() == null ||
+                this.adsskip.trim() == null
+                ) {
                 this.error();
             } else {
                 this.FormData();
