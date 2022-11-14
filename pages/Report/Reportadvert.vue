@@ -164,7 +164,7 @@ export default {
             self.$axios
                 .post("api/v1/manage-delete-requestads", formData)
                 .then(function (response) {
-                    this.$store.commit("Loading");
+                    self.$store.commit("Loading");
                     if (response.data.code == 200) {
                         self.$swal({
                             icon: "success",
