@@ -36,7 +36,7 @@
 
                         <div class="tableBody addbody" v-for="(val, i) in Listads" :key="i">
                             <div class="columid" style="">
-                                {{ i + 1 }}
+                                {{ (currentPage - 1) * perPage + i + 1 }}
                             </div>
 
                             <div class="columtext justleft">

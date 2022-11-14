@@ -217,7 +217,15 @@ export default {
             this.page = "";
         },
         save() {
-            if (this.image == null || this.adsname.trim() == "" || this.adsurl.trim() == "" || this.adsPosition.trim() == "") {
+            // เช็ค URL ว่าใช่ไหม
+            var regex = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+
+            if (this.image == null || this.adsname.trim() == "" || this.adsurl.trim() == "" || regex.test(this.adsurl) == false || this.adsPosition.trim() == "") {
                 this.error();
             } else {
                 this.FormData();
@@ -234,7 +242,16 @@ export default {
             } else {
                 this.adsnamestatus = true;
             }
-            if (this.adsurl.trim() == "") {
+
+            // เช็ค URL ว่าใช่ไหม
+            var regex = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+
+            if (this.adsurl.trim() == "" || regex.test(this.adsurl) == false) {
                 this.adsurlstatus = false;
             } else {
                 this.adsurlstatus = true;
@@ -245,7 +262,7 @@ export default {
                 this.adsPositionstatus = true;
             }
 
-            if (this.image == null || this.adsname.trim() == "" || this.adsurl.trim() == "" || this.adsPosition.trim() == "") {
+            if (this.image == null || this.adsname.trim() == "" || this.adsurl.trim() == "" || regex.test(this.adsurl) == false || this.adsPosition.trim() == "") {
                 this.$swal({
                     icon: "warning",
                     title: "Please complete the information.",

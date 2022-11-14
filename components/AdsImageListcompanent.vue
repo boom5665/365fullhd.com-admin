@@ -311,10 +311,18 @@ export default {
                 });
         },
         save(id, name, status, url, picture, page, position) {
-            if (name == "" || url == "") {
+            // เช็ค URL ว่าใช่ไหม
+            var regex = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+
+            if (name == "" || url == "" || regex.test(url) == false) {
                 this.error(name, url);
             } else {
-                this.FormData(id, name, status, url, picture, page, position);
+                // this.FormData(id, name, status, url, picture, page, position);
             }
         },
         error(name, url) {
@@ -323,12 +331,22 @@ export default {
             } else {
                 this.adsnamestatus = true;
             }
-            if (url == "") {
+
+            // เช็ค URL ว่าใช่ไหม
+            var regex = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+
+            if (url == "" || regex.test(url) == false) {
                 this.adsurlstatus = false;
             } else {
                 this.adsurlstatus = true;
             }
-            if (name == "" || url == "") {
+
+            if (name == "" || url == "" || regex.test(url) == false) {
                 this.$swal({
                     icon: "warning",
                     title: "Please complete the information.",

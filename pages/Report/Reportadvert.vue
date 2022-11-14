@@ -36,7 +36,7 @@
 
                             <div v-for="(val, i) in Listads" :key="i">
                                 <div class="tableBody addbody">
-                                    <div class="columid">{{ i + 1 }}</div>
+                                    <div class="columid">{{ (currentPage - 1) * perPage + i + 1 }}</div>
 
                                     <div class="columtext justleft">
                                         {{ val.name }}
@@ -134,17 +134,21 @@ export default {
             this.get_data();
         },
         get_data() {
+            var self = this;
             var body = {
                 page: this.currentPage,
                 perpage: this.perPage,
                 search: this.search,
             };
 
-            this.$axios
+            self.$store.commit("Loading");
+            self.$axios
                 .$post("api/v1/manage-list-requestads", body)
                 .then((response) => {
-                    this.maxPage = response.result.page_total;
-                    this.Listads = response.result.list;
+                    self.$store.commit("Loading");
+
+                    self.maxPage = response.result.page_total;
+                    self.Listads = response.result.list;
                 })
                 .catch((error) => {
                     console.log(error);
