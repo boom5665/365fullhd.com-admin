@@ -8,7 +8,7 @@
                             <div class="user-addon">
                                 <img src="~assets/images/icon_search.png" class="size_icon_search" alt="" />
                             </div>
-                            <input type="text" class="input-all form-control ng-pristine ng-valid ng-touched" style="width: 250px !important; padding-left: 40px"  placeholder="" />
+                            <input type="text" class="input-all form-control ng-pristine ng-valid ng-touched" style="width: 250px !important; padding-left: 40px"  placeholder="" v-model="search" />
                         </div>
                     </div>
                     <div class="flex_btn">
@@ -30,8 +30,7 @@
                             <div class="tableHeader addheader">
                                 <div class="columid">{{ $t("No.") }}</div>
                                 <div class="columtext justleft">{{ $t("Movie Name") }}</div>
-                                <div class="columName">{{ $t("Date") }}</div>
-                                <div class="columstatusads">{{ $t("Edit") }}</div>
+                                <div class="columtext">{{ $t("Date") }}</div>
                                 <div class="columAct">{{ $t("Actions") }}</div>
                             </div>
 
@@ -42,11 +41,8 @@
                                     <div class="columtext justleft">
                                         <div>{{ val.titlerequest }}</div>
                                     </div>
-                                    <div class="columName">
+                                    <div class="columtext">
                                         {{ val.craete_date.split("T")[0] }}
-                                    </div>
-                                    <div class="columstatusads">
-                                        <span class="">{{ val.status_name == "ยังไม่ได้แก้" ? "ยังไม่ได้เพิ่ม" : val.update_date.split("T")[0] }} </span>
                                     </div>
                                     <div class="columAct">
                                         <!-- <nuxt-link :to="toeditpage(val.id)" tag="button">
@@ -131,13 +127,7 @@ export default {
             this.get_data();
         },
         checksearch() {
-            if(this.search.trim() == ""){
-                this.search = "";
-                return;
-            }else{
-                this.search = this.search.trim();
-            }
-
+            this.search = this.search.trim();
             this.get_data();
         },
         get_data() {

@@ -31,7 +31,6 @@
                             <div class="columtext justleft">{{ $t("Movie Name") }}</div>
                             <div class="columskip justleft">{{ $t("Reason") }}</div>
                             <div class="columName" style="align-items: center">{{ $t("Date") }}</div>
-                            <div class="columstatusads">{{ $t("Status") }}</div>
                             <div class="columAct">{{ $t("Actions") }}</div>
                         </div>
 
@@ -49,10 +48,7 @@
                                 </div>
                             </div>
                             <div class="columName">
-                                <div v-for="(v, index) in val.detail" :key="index">- {{ v.create_data.split("T")[0] }}</div>
-                            </div>
-                            <div class="columstatusads">
-                                <span class="">{{ val.status == 2 ? $t("Edited") : $t("Not Edit") }} </span>
+                                <div v-for="(v, index) in val.detail" :key="index">{{ v.create_data.split("T")[0] }}</div>
                             </div>
                             <div class="columAct">
                                 <!-- <button @click="edit(val.movie_id, val.movie_type, val.status)" class="btn_edit btn-src"><span class="btn_font">Edit</span></button> -->
@@ -103,12 +99,7 @@ export default {
             this.get_data();
         },
         checksearch() {
-            if(this.search.trim() == ""){
-                this.search = "";
-                return;
-            }else{
-                this.search = this.search.trim();
-            }
+            this.search = this.search.trim();
 
             this.get_data();
         },

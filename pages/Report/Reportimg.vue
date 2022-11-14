@@ -12,7 +12,7 @@
                             <div class="btn-src">
                                 <input type="date" class="input-all form-control ng-pristine ng-valid ng-touched" style="width: 140px !important; padding-left: 5px" v-model="date_end" @change="changeValueDate" />
                             </div>
-                            <button @click="checksearch" class="btn btn_search btn-src">
+                            <button @click="clickShowLoading" class="btn btn_search btn-src">
                                 <span class="btn_font">{{ $t("Search") }}</span>
                             </button>
                         </div>
@@ -160,7 +160,6 @@ export default {
             this.date_start = firstDay.toISOString().split("T")[0];
             this.date_end = lastDay.toISOString().split("T")[0];
 
-
             //แปลงค่า format date
             var aArrayDayStart = this.date_start.split("-");
             this.dDateStart = aArrayDayStart[2] + '/' + aArrayDayStart[1] + '/' + aArrayDayStart[0]
@@ -175,12 +174,7 @@ export default {
             this.get_data();
         },
         checksearch() {
-            if(this.search.trim() == ""){
-                this.search = "";
-                return;
-            }else{
-                this.search = this.search.trim();
-            }
+            this.search = this.search.trim();
 
             this.$store.commit("Loading");
             this.countall = "";

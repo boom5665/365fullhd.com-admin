@@ -143,13 +143,7 @@ export default {
             this.get_data();
         },
         checksearch() {
-            if(this.search.trim() == ""){
-                this.search = "";
-                return;
-            }else{
-                this.search = this.search.trim();
-            }
-
+            this.search = this.search.trim();
             this.get_data();
         },
         get_data() {

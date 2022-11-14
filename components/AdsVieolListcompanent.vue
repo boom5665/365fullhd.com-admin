@@ -20,7 +20,7 @@
                 </div>
             </template>
         </div>
-        <div class="columAct">
+        <div class="columAct pad-10">
             <div class="columActleft">
                 <div class="display-start">
                     <div class="input-group">
@@ -30,7 +30,7 @@
 
                 <div class="display-start">
                     <div class="input-group">
-                        <InputUrl :text_input_top="$t(adsurl_text_top)" :status_value="adsurlstatus" v-model="val.url"></InputUrl>
+                        <InputUrl :text_input_top="$t(adsurl_text_top)" :status_value="adsurlstatus" :text_input_bottom="adsurl_text_bottom" v-model="val.url"></InputUrl>
                     </div>
                 </div>
 
@@ -79,6 +79,7 @@ export default {
         return {
             adsurl_text_top: "Ads URL",
             adsurlstatus: true,
+            adsurl_text_bottom: "example: https://www.google.com/",
 
             adsname_text_top: "Video Ads Name",
             adsnamestatus: true,
@@ -119,7 +120,7 @@ export default {
         },
 
         save(id, name, url, skip, status, video) {
-            if (this.video.trim() == "" || this.name .trim()== "" || this.url.trim() == "") {
+            if (video == "" || name.trim()== "" || url.trim() == "" || skip == 0) {
                 this.error(id, name, url, skip, status, video);
             } else {
                 this.FormData(id, name, url, skip, status, video);
@@ -146,7 +147,7 @@ export default {
             } else {
                 this.adsskipstatus = true;
             }
-            if (video == null || url.trim() == "" || name.trim() == "" || skip.trim() == "") {
+            if (video == null || url.trim() == "" || name.trim() == "" || skip == "") {
                 this.$swal({
                     icon: "warning",
                     title: "Please complete the information.",
@@ -159,7 +160,7 @@ export default {
             formData.append("vdo", video);
             formData.append("url", url.trim());
             formData.append("name", name.trim());
-            formData.append("skip", skip.trim());
+            formData.append("skip", skip);
             formData.append("status", status == true ? 1 : 2);
 
             this.$store.commit("Loading");
@@ -189,7 +190,6 @@ export default {
                     }, 1000);
                 });
         },
-
         Delete(id) {
             var self = this;
             self.$swal({
@@ -220,7 +220,7 @@ export default {
                     if (response.data.code == 200) {
                         self.$swal({
                             icon: "success",
-                            title: self.$("Delete Successful"),
+                            title: self.$t("Delete Successful"),
                         });
                         setTimeout(function () {
                             location.reload();
@@ -231,7 +231,7 @@ export default {
                     console.log(error);
                     self.$swal({
                         icon: "error",
-                        title: self.$("Delete Failed"),
+                        title: self.$t("Delete Failed"),
                     });
                     setTimeout(function () {
                         location.reload();

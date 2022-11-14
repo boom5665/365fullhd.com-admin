@@ -37,7 +37,7 @@
                     </div>
                 </template>
             </div>
-            <div class="columAct">
+            <div class="columAct pad-10">
                 <div class="columActleft">
                     <div class="display-start">
                         <div class="input-group">
@@ -189,7 +189,7 @@ export default {
     data() {
         return {
             adsurl_text_top: "Ads URL",
-            adsurl_text_bottom: "",
+            adsurl_text_bottom: "example: https://www.google.com/",
             adsurlstatus: true,
 
             adsname_text_top: "Ads Name",

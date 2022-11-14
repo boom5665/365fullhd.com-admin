@@ -62,7 +62,7 @@ export default {
             search: "",
             DeleteId: "",
             adsurl_text_top: "Ads URL",
-            adsurl_text_bottom: "",
+            adsurl_text_bottom: "example: https://www.google.com/",
 
             adsurlstatus: true,
 

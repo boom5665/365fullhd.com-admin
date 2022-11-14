@@ -39,7 +39,7 @@ export default {
     data() {
         return {
             adsurl_text_top: "Ads URL",
-            adsurl_text_bottom: "",
+            adsurl_text_bottom: "example: https://www.google.com/",
             adsurl: "",
             adsurlstatus: true,
 
@@ -88,7 +88,7 @@ export default {
             }
         },
         adsskip(val) {
-            if (val.trim() != "") {
+            if (val != 0) {
                 this.adsskipstatus = true;
             }
         },
@@ -98,14 +98,14 @@ export default {
             this.video = "";
             this.adsname = "";
             this.adsurl = "";
-            // this.adsPosition = "";
             this.adsskip = "";
         },
         save() {
-            if (this.video == null ||
-                this.adsname.trim() == null ||
+            if (
+                this.video == null || 
+                this.adsname.trim() == null || 
                 this.adsurl.trim() == null ||
-                this.adsskip.trim() == null
+                this.adsskip == 0
                 ) {
                 this.error();
             } else {
@@ -128,12 +128,12 @@ export default {
             } else {
                 this.adsurlstatus = true;
             }
-            if (this.adsskip.trim() == "") {
+            if (this.adsskip == 0) {
                 this.adsskipstatus = false;
             } else {
                 this.adsskipstatus = true;
             }
-            if (this.video == null || this.adsurl.trim() == "" || this.adsname.trim() == "" || this.adsskip.trim() == "") {
+            if (this.video == null || this.adsurl.trim() == "" || this.adsname.trim() == "" || this.adsskip == 0) {
                 this.$swal({
                     icon: "warning",
                     title: "Please complete the information.",
@@ -153,7 +153,7 @@ export default {
             formData.append("vdo", this.video);
             formData.append("url", this.adsurl.trim());
             formData.append("name", this.adsname.trim());
-            formData.append("skip", this.adsskip.trim());
+            formData.append("skip", this.adsskip);
 
             this.$store.commit("Loading");
             var self = this;

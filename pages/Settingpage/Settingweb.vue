@@ -138,13 +138,13 @@ export default {
         },
         save() {
             if (
-                this.title.trim() == "" ||
-                this.Description.trim() == "" ||
-                this.Slogan.trim() == "" ||
-                this.DateMovie == "" ||
-                this.image == "" ||
-                (typeof this.image.name == 'string' && this.image.type != "image/png") ||
-                this.image_list == "" ||
+                this.title.trim() == "" || 
+                this.Description.trim() == "" || 
+                this.Slogan.trim() == "" || 
+                this.DateMovie == "" || 
+                this.image == "" || 
+                (typeof this.image.name == 'string' && this.image.type != "image/png") || 
+                this.image_list == "" || 
                 (typeof this.image_list.name == 'string' && this.image_list.type != "image/x-icon")
             ) {
                 this.error();

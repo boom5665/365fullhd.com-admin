@@ -16,7 +16,7 @@
                 </div>
                 <div class="display-start">
                     <div class="input-group">
-                        <InputUrl :text_input_top="$t(adsurl_text_top)" :status_value="adsurlstatus" v-model="adsurl"></InputUrl>
+                        <InputUrl :text_input_top="$t(adsurl_text_top)" :text_input_bottom="adsurl_text_bottom" :status_value="adsurlstatus" v-model="adsurl"></InputUrl>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@ export default {
     data() {
         return {
             adsurl_text_top: "Ads URL",
-            adsurl_text_bottom: "",
+            adsurl_text_bottom: "example: https://www.google.com/",
             adsurl: "",
             adsurlstatus: true,
 
@@ -209,7 +209,6 @@ export default {
             let text = position;
             const myArray = text.split("-");
         },
-
         Clear() {
             this.image = null;
             this.adsname = "";
