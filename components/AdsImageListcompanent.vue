@@ -322,7 +322,7 @@ export default {
             if (name == "" || url == "" || regex.test(url) == false) {
                 this.error(name, url);
             } else {
-                // this.FormData(id, name, status, url, picture, page, position);
+                this.FormData(id, name, status, url, picture, page, position);
             }
         },
         error(name, url) {
