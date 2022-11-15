@@ -2,7 +2,6 @@
     <div>
         <Container @drop="onDrop($event)">
             <Draggable v-for="(value, i) in value_data" :key="i" >
-                {{value.status}}
                 <div class="d-flex-center" v-if="value.status == 1" >
                     <div class="position-ads">
                       <img id="" :src="value.picture" class="imgads-position" controls="" />
